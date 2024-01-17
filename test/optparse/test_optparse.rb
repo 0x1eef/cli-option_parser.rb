@@ -1,6 +1,6 @@
 # frozen_string_literal: false
 require 'test/unit'
-require 'optparse'
+require 'cmd-optparse'
 
 class TestOptionParser < Test::Unit::TestCase
   def setup

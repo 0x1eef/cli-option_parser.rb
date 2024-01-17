@@ -73,7 +73,7 @@
 #
 # === Minimal example
 #
-#   require 'optparse'
+#   require 'cmd-optparse'
 #
 #   options = {}
 #   OptionParser.new do |parser|
@@ -92,7 +92,7 @@
 # OptionParser can be used to automatically generate help for the commands you
 # write:
 #
-#   require 'optparse'
+#   require 'cmd-optparse'
 #
 #   Options = Struct.new(:name)
 #
@@ -130,7 +130,7 @@
 # option name in all caps. If an option is used without the required argument,
 # an exception will be raised.
 #
-#   require 'optparse'
+#   require 'cmd-optparse'
 #
 #   options = {}
 #   OptionParser.new do |parser|
@@ -183,8 +183,8 @@
 # as a +Time+. If it succeeds, that time will be passed to the
 # handler block. Otherwise, an exception will be raised.
 #
-#   require 'optparse'
-#   require 'optparse/time'
+#   require 'cmd-optparse'
+#   require 'cmd-optparse/time'
 #   OptionParser.new do |parser|
 #     parser.on("-t", "--time [TIME]", Time, "Begin execution at given time") do |time|
 #       p time
@@ -206,7 +206,7 @@
 # It specifies which conversion block to call whenever a class is specified.
 # The example below uses it to fetch a +User+ object before the +on+ handler receives it.
 #
-#   require 'optparse'
+#   require 'cmd-optparse'
 #
 #   User = Struct.new(:id, :name)
 #
@@ -242,7 +242,7 @@
 #
 # The +into+ option of +order+, +parse+ and so on methods stores command line options into a Hash.
 #
-#   require 'optparse'
+#   require 'cmd-optparse'
 #
 #   options = {}
 #   OptionParser.new do |parser|
@@ -268,8 +268,8 @@
 # effect of specifying various options.  This is probably the best way to learn
 # the features of +optparse+.
 #
-#   require 'optparse'
-#   require 'optparse/time'
+#   require 'cmd-optparse'
+#   require 'cmd-optparse/time'
 #   require 'ostruct'
 #   require 'pp'
 #
@@ -1406,7 +1406,7 @@ XXX
   # :call-seq:
   #   make_switch(params, block = nil)
   #
-  # :include: ../doc/optparse/creates_option.rdoc
+  # :include: ../d/option_parserreates_option.rdoc
   #
   def make_switch(opts, block = nil)
     short, long, nolong, style, pattern, conv, not_pattern, not_conv, not_style = [], [], []
@@ -1544,7 +1544,7 @@ XXX
   # :call-seq:
   #   define(*params, &block)
   #
-  # :include: ../doc/optparse/creates_option.rdoc
+  # :include: ../d/option_parserreates_option.rdoc
   #
   def define(*opts, &block)
     top.append(*(sw = make_switch(opts, block)))
@@ -1554,7 +1554,7 @@ XXX
   # :call-seq:
   #   on(*params, &block)
   #
-  # :include: ../doc/optparse/creates_option.rdoc
+  # :include: ../d/option_parserreates_option.rdoc
   #
   def on(*opts, &block)
     define(*opts, &block)
@@ -1565,7 +1565,7 @@ XXX
   # :call-seq:
   #   define_head(*params, &block)
   #
-  # :include: ../doc/optparse/creates_option.rdoc
+  # :include: ../d/option_parserreates_option.rdoc
   #
   def define_head(*opts, &block)
     top.prepend(*(sw = make_switch(opts, block)))
@@ -1575,7 +1575,7 @@ XXX
   # :call-seq:
   #   on_head(*params, &block)
   #
-  # :include: ../doc/optparse/creates_option.rdoc
+  # :include: ../d/option_parserreates_option.rdoc
   #
   # The new option is added at the head of the summary.
   #
@@ -1588,7 +1588,7 @@ XXX
   # :call-seq:
   #   define_tail(*params, &block)
   #
-  # :include: ../doc/optparse/creates_option.rdoc
+  # :include: ../d/option_parserreates_option.rdoc
   #
   def define_tail(*opts, &block)
     base.append(*(sw = make_switch(opts, block)))
@@ -1599,7 +1599,7 @@ XXX
   # :call-seq:
   #   on_tail(*params, &block)
   #
-  # :include: ../doc/optparse/creates_option.rdoc
+  # :include: ../d/option_parserreates_option.rdoc
   #
   # The new option is added at the tail of the summary.
   #

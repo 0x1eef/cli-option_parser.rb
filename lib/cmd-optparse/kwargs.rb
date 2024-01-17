@@ -1,11 +1,11 @@
 # frozen_string_literal: true
-require_relative '../optparse'
+require_relative 'option_parser'
 
 class OptionParser
   # :call-seq:
   #   define_by_keywords(options, method, **params)
   #
-  # :include: ../../doc/optparse/creates_option.rdoc
+  # :include: ../..option_parserreates_option.rdoc
   #
   def define_by_keywords(options, meth, **opts)
     meth.parameters.each do |type, name|
