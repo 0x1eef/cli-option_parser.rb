@@ -10,12 +10,12 @@ end
 Gem::Specification.new do |spec|
   spec.name          = name
   spec.version       = version
-  spec.authors       = ["Nobu Nakada"]
-  spec.email         = ["nobu@ruby-lang.org"]
+  spec.authors       = ["0x1eef", "Nobu Nakada"]
+  spec.email         = ["0x1eef@protonmail.com"]
 
   spec.summary       = %q{OptionParser is a class for command-line option analysis.}
   spec.description   = %q{OptionParser is a class for command-line option analysis.}
-  spec.homepage      = "https://github.com/ruby/optparse"
+  spec.homepage      = "https://github.com/0x1eef/cmd-optparse.rb#readme"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.5.0")
   spec.licenses      = ["Ruby", "BSD-2-Clause"]
 
