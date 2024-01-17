@@ -1,7 +1,5 @@
 # frozen_string_literal: false
-require_relative 'option_parser'
 require 'date'
-
 OptionParser.accept(DateTime) do |s,|
   begin
     DateTime.parse(s) if s

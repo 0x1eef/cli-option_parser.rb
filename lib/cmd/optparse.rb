@@ -425,6 +425,14 @@
 # If you have any questions, file a ticket at http://bugs.ruby-lang.org.
 #
 class OptionParser
+  require_relative "option_parser/ac"
+  require_relative "option_parser/date"
+  require_relative "option_parser/time"
+  require_relative "option_parser/kwargs"
+  require_relative "option_parser/shellwords"
+  require_relative "option_parser/uri"
+  require_relative "option_parser/version"
+
   OptionParser::Version = "0.4.0"
 
   # :stopdoc:
@@ -2337,6 +2345,14 @@ XXX
     const_set(:OctalInteger, OptionParser::OctalInteger)
     const_set(:DecimalNumeric, OptionParser::DecimalNumeric)
   end
+
+  require_relative "option_parser/ac"
+  require_relative "option_parser/date"
+  require_relative "option_parser/time"
+  require_relative "option_parser/kwargs"
+  require_relative "option_parser/shellwords"
+  require_relative "option_parser/uri"
+  require_relative "option_parser/version"
 end
 
 # ARGV is arguable by OptionParser

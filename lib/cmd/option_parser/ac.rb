@@ -1,6 +1,4 @@
 # frozen_string_literal: false
-require_relative 'option_parser'
-
 class OptionParser::AC < OptionParser
   private
 
