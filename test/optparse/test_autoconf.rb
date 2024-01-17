@@ -2,9 +2,9 @@
 require 'test/unit'
 require 'optparse/ac'
 
-class TestOptionParserAutoConf < Test::Unit::TestCase
+class ::OptionParserAutoConf < Test::Unit::TestCase
   def setup
-    @opt = OptionParser::AC.new
+    @opt = Cmd::OptionParser::AC.new
     @foo = @bar = self.class
     @opt.ac_arg_enable("foo", "foo option") {|x| @foo = x}
     @opt.ac_arg_disable("bar", "bar option") {|x| @bar = x}
@@ -54,7 +54,7 @@ class TestOptionParserAutoConf < Test::Unit::TestCase
   def test_without
     @opt.parse!(%w"--without-zot")
     assert_nil(@zot)
-    assert_raise(OptionParser::NeedlessArgument) {@opt.parse!(%w"--without-zot=foobar")}
+    assert_raise(Cmd::OptionParser::NeedlessArgument) {@opt.parse!(%w"--without-zot=foobar")}
   end
 
   def test_help

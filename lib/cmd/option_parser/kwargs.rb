@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class OptionParser
+class Cmd::OptionParser
   # :call-seq:
   #   define_by_keywords(options, method, **params)
   #

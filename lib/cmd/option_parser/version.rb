@@ -1,7 +1,7 @@
 # frozen_string_literal: false
 # OptionParser internal utility
 
-class << OptionParser
+class << Cmd::OptionParser
   def show_version(*pkgs)
     progname = ARGV.options.program_name
     result = false

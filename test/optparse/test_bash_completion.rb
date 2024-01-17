@@ -2,9 +2,9 @@
 require 'test/unit'
 require 'optparse'
 
-class TestOptionParserBashCompletion < Test::Unit::TestCase
+class ::OptionParserBashCompletion < Test::Unit::TestCase
   def setup
-    @opt = OptionParser.new
+    @opt = Cmd::OptionParser.new
     @opt.define("-z", "zzz") {}
     @opt.define("--foo") {}
     @opt.define("--bar=BAR") {}

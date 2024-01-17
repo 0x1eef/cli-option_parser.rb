@@ -1,23 +1,23 @@
 # frozen_string_literal: false
 require_relative 'test_optparse'
 
-module TestOptionParserNoArg
+module ::OptionParserNoArg
   def setup
     super
     @opt.def_option "--with_underscore" do |x| @flag = x end
     @opt.def_option "--with-hyphen" do |x| @flag = x end
   end
 
-  class Def1 < TestOptionParser
-    include TestOptionParserNoArg
+  class Def1 < ::OptionParser
+    include ::OptionParserNoArg
     def setup
       super
       @opt.def_option("-x") {|x| @flag = x}
       @opt.def_option("--option") {|x| @flag = x}
     end
   end
-  class Def2 < TestOptionParser
-    include TestOptionParserNoArg
+  class Def2 < ::OptionParser
+    include ::OptionParserNoArg
     def setup
       super
       @opt.def_option("-x", "--option") {|x| @flag = x}
@@ -25,7 +25,7 @@ module TestOptionParserNoArg
   end
 
   def test_short
-    assert_raise(OptionParser::InvalidOption) {@opt.parse!(%w"-xq")}
+    assert_raise(Cmd::OptionParser::InvalidOption) {@opt.parse!(%w"-xq")}
     assert_equal(%w"", no_error {@opt.parse!(%w"-x")})
     assert_equal(true, @flag)
     @flag = nil
@@ -34,11 +34,11 @@ module TestOptionParserNoArg
   end
 
   def test_abbrev
-    assert_raise(OptionParser::InvalidOption) {@opt.parse!(%w"-oq")}
+    assert_raise(Cmd::OptionParser::InvalidOption) {@opt.parse!(%w"-oq")}
     assert_equal(%w"", no_error {@opt.parse!(%w"-o")})
     assert_equal(true, @flag)
     @flag = nil
-    assert_raise(OptionParser::InvalidOption) {@opt.parse!(%w"-O")}
+    assert_raise(Cmd::OptionParser::InvalidOption) {@opt.parse!(%w"-O")}
     assert_nil(@flag)
     @flag = nil
     assert_equal(%w"foo", no_error {@opt.parse!(%w"-o foo")})
@@ -46,7 +46,7 @@ module TestOptionParserNoArg
   end
 
   def test_long
-    assert_raise(OptionParser::NeedlessArgument) {@opt.parse!(%w"--option=x")}
+    assert_raise(Cmd::OptionParser::NeedlessArgument) {@opt.parse!(%w"--option=x")}
     assert_equal(%w"", no_error {@opt.parse!(%w"--opt")})
     assert_equal(true, @flag)
     @flag = nil
@@ -56,8 +56,8 @@ module TestOptionParserNoArg
 
   def test_ambiguous
     @opt.def_option("--open") {|x|}
-    assert_raise(OptionParser::AmbiguousOption) {@opt.parse!(%w"--op")}
-    assert_raise(OptionParser::AmbiguousOption) {@opt.parse!(%w"-o")}
+    assert_raise(Cmd::OptionParser::AmbiguousOption) {@opt.parse!(%w"--op")}
+    assert_raise(Cmd::OptionParser::AmbiguousOption) {@opt.parse!(%w"-o")}
     assert_equal(%w"", no_error {@opt.parse!(%w"--opt")})
     assert_equal(true, @flag)
   end

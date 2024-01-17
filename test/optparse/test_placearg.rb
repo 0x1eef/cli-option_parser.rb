@@ -1,7 +1,7 @@
 # frozen_string_literal: false
 require_relative 'test_optparse'
 
-class TestOptionParserPlaceArg < TestOptionParser
+class ::OptionParserPlaceArg < ::OptionParser
   def setup
     super
     @opt.def_option("-x [VAL]") {|x| @flag = x}

@@ -1,15 +1,15 @@
 # frozen_string_literal: false
 require_relative 'test_optparse'
 
-module TestOptionParserReqArg
+module ::OptionParserReqArg
   def setup
     super
     @opt.def_option "--with_underscore=VAL" do |x| @flag = x end
     @opt.def_option "--with-hyphen=VAL" do |x| @flag = x end
   end
 
-  class Def1 < TestOptionParser
-    include TestOptionParserReqArg
+  class Def1 < ::OptionParser
+    include ::OptionParserReqArg
     def setup
       super
       @opt.def_option("-xVAL") {|x| @flag = x}
@@ -18,22 +18,22 @@ module TestOptionParserReqArg
       @reopt = nil
     end
   end
-  class Def2 < TestOptionParser
-    include TestOptionParserReqArg
+  class Def2 < ::OptionParser
+    include ::OptionParserReqArg
     def setup
       super
       @opt.def_option("-x", "--option=VAL") {|x| @flag = x}
     end
   end
-  class Def3 < TestOptionParser
-    include TestOptionParserReqArg
+  class Def3 < ::OptionParser
+    include ::OptionParserReqArg
     def setup
       super
       @opt.def_option("--option=VAL", "-x") {|x| @flag = x}
     end
   end
-  class Def4 < TestOptionParser
-    include TestOptionParserReqArg
+  class Def4 < ::OptionParser
+    include ::OptionParserReqArg
     def setup
       super
       @opt.def_option("-xVAL", "--option=VAL") {|x| @flag = x}
@@ -41,7 +41,7 @@ module TestOptionParserReqArg
   end
 
   def test_short
-    assert_raise(OptionParser::MissingArgument) {@opt.parse!(%w"-x")}
+    assert_raise(Cmd::OptionParser::MissingArgument) {@opt.parse!(%w"-x")}
     assert_equal(%w"", no_error {@opt.parse!(%w"-x foo")})
     assert_equal("foo", @flag)
     assert_equal(%w"", no_error {@opt.parse!(%w"-xbar")})
@@ -51,7 +51,7 @@ module TestOptionParserReqArg
   end
 
   def test_abbrev
-    assert_raise(OptionParser::MissingArgument) {@opt.parse!(%w"-o")}
+    assert_raise(Cmd::OptionParser::MissingArgument) {@opt.parse!(%w"-o")}
     assert_equal(%w"", no_error {@opt.parse!(%w"-o foo")})
     assert_equal("foo", @flag)
     assert_equal(%w"", no_error {@opt.parse!(%w"-obar")})
@@ -61,7 +61,7 @@ module TestOptionParserReqArg
   end
 
   def test_long
-    assert_raise(OptionParser::MissingArgument) {@opt.parse!(%w"--opt")}
+    assert_raise(Cmd::OptionParser::MissingArgument) {@opt.parse!(%w"--opt")}
     assert_equal(%w"", no_error {@opt.parse!(%w"--opt foo")})
     assert_equal("foo", @flag)
     assert_equal(%w"foo", no_error {@opt.parse!(%w"--opt= foo")})
@@ -81,7 +81,7 @@ module TestOptionParserReqArg
     assert_equal("foo4", @flag)
   end
 
-  class TestOptionParser::WithPattern < TestOptionParser
+  class ::OptionParser::WithPattern < ::OptionParser
     def test_pattern
       pat = num = nil
       @opt.def_option("--pattern=VAL", /(\w+)(?:\s*:\s*(\w+))?/) {|x, y, z| pat = [x, y, z]}

@@ -3,7 +3,7 @@ require 'test/unit'
 require 'optparse'
 require 'tmpdir'
 
-class TestOptionParserLoad < Test::Unit::TestCase
+class ::OptionParserLoad < Test::Unit::TestCase
   def setup
     @tmpdir = Dir.mktmpdir("optparse_test-")
     @basename = File.basename($0, '.*')
@@ -19,7 +19,7 @@ class TestOptionParserLoad < Test::Unit::TestCase
 
   def new_parser
     @result = nil
-    OptionParser.new do |opt|
+    Cmd::OptionParser.new do |opt|
       opt.on("--test=arg") {|v| @result = v}
     end
   end

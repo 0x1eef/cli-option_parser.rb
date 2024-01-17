@@ -3,7 +3,7 @@ require "./lib/cmd-optparse"
 
 Gem::Specification.new do |spec|
   spec.name          =  File.basename(__FILE__, ".gemspec")
-  spec.version       = OptionParser::VERSION
+  spec.version       = Cmd::OptionParser::VERSION
   spec.authors       = ["0x1eef", "Nobu Nakada"]
   spec.email         = ["0x1eef@protonmail.com"]
 

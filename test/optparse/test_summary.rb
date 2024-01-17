@@ -1,10 +1,10 @@
 # frozen_string_literal: false
 require_relative 'test_optparse'
 
-class TestOptionParserSummaryTest < TestOptionParser
+class ::OptionParserSummaryTest < ::OptionParser
   def test_short_clash
     r = nil
-    o = OptionParser.new do |opts|
+    o = Cmd::OptionParser.new do |opts|
       opts.on("-f", "--first-option", "description 1", "description 2"){r = "first-option"}
       opts.on("-t", "--test-option"){r = "test-option"}
       opts.on("-t", "--another-test-option"){r = "another-test-option"}
@@ -21,32 +21,32 @@ class TestOptionParserSummaryTest < TestOptionParser
   end
 
   def test_banner
-    o = OptionParser.new("foo bar")
+    o = Cmd::OptionParser.new("foo bar")
     assert_equal("foo bar", o.banner)
   end
 
   def test_banner_from_progname
-    o = OptionParser.new
+    o = Cmd::OptionParser.new
     o.program_name = "foobar"
     assert_equal("Usage: foobar [options]\n", o.help)
   end
 
   def test_summary
-    o = OptionParser.new("foo\nbar")
+    o = Cmd::OptionParser.new("foo\nbar")
     assert_equal("foo\nbar\n", o.to_s)
     assert_equal(["foo\n", "bar"], o.to_a)
   end
 
   def test_summary_containing_space
-    # test for r35467. OptionParser#to_a shouldn't split str by spaces.
+    # test for r35467. Cmd::OptionParser#to_a shouldn't split str by spaces.
     bug6348 = '[ruby-dev:45568]'
-    o = OptionParser.new("foo bar")
+    o = Cmd::OptionParser.new("foo bar")
     assert_equal("foo bar\n", o.to_s, bug6348)
     assert_equal(["foo bar"], o.to_a, bug6348)
   end
 
   def test_ver
-    o = OptionParser.new("foo bar")
+    o = Cmd::OptionParser.new("foo bar")
     o.program_name = "foo"
     assert_warning('') {assert_nil(o.version)}
     assert_warning('') {assert_nil(o.release)}
@@ -58,7 +58,7 @@ class TestOptionParserSummaryTest < TestOptionParser
 
   # https://github.com/ruby/optparse/issues/37
   def test_very_long_without_short
-    o = OptionParser.new do |opts|
+    o = Cmd::OptionParser.new do |opts|
       # This causes TypeError
       opts.on('',   '--long-long-option-param-without-short', "Error desc") { options[:long_long_option_param_without_short] = true }
       opts.on('',   '--long-option-param', "Long desc") { options[:long_option_param_without_short] = true }

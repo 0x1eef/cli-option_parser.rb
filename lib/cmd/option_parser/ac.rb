@@ -1,5 +1,5 @@
 # frozen_string_literal: false
-class OptionParser::AC < OptionParser
+class Cmd::OptionParser::AC < Cmd::OptionParser
   private
 
   def _check_ac_args(name, block)

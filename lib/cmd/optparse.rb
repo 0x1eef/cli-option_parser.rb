@@ -8,7 +8,6 @@
 # See OptionParser for documentation.
 #
 
-
 #--
 # == Developer Documentation (not for RDoc output)
 #
@@ -424,7 +423,7 @@
 # should be enough to learn how to use this class.
 # If you have any questions, file a ticket at http://bugs.ruby-lang.org.
 #
-class OptionParser
+class Cmd::OptionParser
   VERSION = "0.5.0"
 
   # :stopdoc:
@@ -2345,10 +2344,8 @@ XXX
   require_relative "option_parser/shellwords"
   require_relative "option_parser/uri"
   require_relative "option_parser/version"
+
+  # ARGV is arguable by OptionParser
+  ARGV.extend(Arguable)
 end
 
-# ARGV is arguable by OptionParser
-ARGV.extend(OptionParser::Arguable)
-
-# An alias for OptionParser.
-OptParse = OptionParser  # :nodoc:

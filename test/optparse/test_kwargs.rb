@@ -3,7 +3,7 @@ require 'test/unit'
 require 'optparse'
 require 'optparse/kwargs'
 
-class TestOptionParserKwArg < Test::Unit::TestCase
+class ::OptionParserKwArg < Test::Unit::TestCase
   class K
     def initialize(host:, port: 8080)
       @host = host
@@ -25,10 +25,10 @@ class TestOptionParserKwArg < Test::Unit::TestCase
   alias no_error assert_no_error
 
   def test_kwarg
-    opt = OptionParser.new
+    opt = Cmd::OptionParser.new
     options = opt.define_by_keywords({}, K.instance_method(:initialize),
                                      port: [Integer])
-    assert_raise(OptionParser::MissingArgument) {opt.parse!(%w"--host")}
+    assert_raise(Cmd::OptionParser::MissingArgument) {opt.parse!(%w"--host")}
     assert_nothing_raised {opt.parse!(%w"--host=localhost")}
     assert_equal("localhost", options[:host])
     assert_nothing_raised {opt.parse!(%w"--port")}

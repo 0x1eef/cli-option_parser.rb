@@ -1,9 +1,9 @@
 # frozen_string_literal: false
 require 'time'
-OptionParser.accept(Time) do |s,|
+Cmd::OptionParser.accept(Time) do |s,|
   begin
     (Time.httpdate(s) rescue Time.parse(s)) if s
   rescue
-    raise OptionParser::InvalidArgument, s
+    raise Cmd::OptionParser::InvalidArgument, s
   end
 end

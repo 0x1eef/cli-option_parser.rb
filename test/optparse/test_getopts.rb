@@ -2,9 +2,9 @@
 require 'test/unit'
 require 'optparse'
 
-class TestOptionParserGetopts < Test::Unit::TestCase
+class ::OptionParserGetopts < Test::Unit::TestCase
   def setup
-    @opt = OptionParser.new
+    @opt = Cmd::OptionParser.new
   end
 
   def test_short_noarg
