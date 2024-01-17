@@ -75,7 +75,11 @@ class TestOptionParser < Test::Unit::TestCase
     @opt.def_option "-q", "--quiet" do @quiet = true end
     result = {}
     @opt.parse %w(--host localhost --port 8000 -v), into: result
-    assert_equal({host: "localhost", port: 8000, verbose: true}, result)
+    assert_equal({
+      h: "localhost", host: "localhost",
+      p: 8000, port: 8000,
+      v: true, verbose: true
+    }, result)
     assert_equal(true, @verbose)
   end
 
@@ -84,14 +88,14 @@ class TestOptionParser < Test::Unit::TestCase
     %w(--zrs --zr --z -zfoo -z -F -Ffoo).each do |arg|
       result = {}
       @opt.parse([arg, 'foo'], into: result)
-      assert_equal({zrs: 'foo'}, result)
+      assert_equal({F: 'foo', zrs: 'foo'}, result)
     end
 
     @opt.require_exact = true
     %w(--zrs -F -Ffoo).each do |arg|
       result = {}
       @opt.parse([arg, 'foo'], into: result)
-      assert_equal({zrs: 'foo'}, result)
+      assert_equal({F: 'foo', zrs: 'foo'}, result)
     end
 
     assert_raise(OptionParser::InvalidOption) {@opt.parse(%w(--zr foo))}

@@ -652,8 +652,10 @@ class OptionParser
     #
     # Main name of the switch.
     #
-    def switch_name
-      (long.first || short.first).sub(/\A-+(?:\[no-\])?/, '')
+    def switch_names
+      [short.first, long.first].compact.map do
+        _1.sub(/\A-+(?:\[no-\])?/, '')
+      end
     end
 
     def compsys(sdone, ldone)   # :nodoc:
@@ -1660,7 +1662,7 @@ XXX
           begin
             opt, cb, val = sw.parse(rest, argv) {|*exc| raise(*exc)}
             val = cb.call(val) if cb
-            setter.call(sw.switch_name, val) if setter
+            sw.switch_names.each { setter.call(_1, val) } if setter
           rescue ParseError
             raise $!.set_option(arg, rest)
           end
@@ -1699,7 +1701,7 @@ XXX
           begin
             argv.unshift(opt) if opt and (!rest or (opt = opt.sub(/\A-*/, '-')) != '-')
             val = cb.call(val) if cb
-            setter.call(sw.switch_name, val) if setter
+            sw.switch_names.each { setter.call(_1, val) } if setter
           rescue ParseError
             raise $!.set_option(arg, arg.length > 2)
           end
