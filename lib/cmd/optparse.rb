@@ -424,7 +424,7 @@
 # If you have any questions, file a ticket at http://bugs.ruby-lang.org.
 #
 class Cmd::OptionParser
-  VERSION = "0.5.0"
+  VERSION = "0.5.1"
 
   # :stopdoc:
   NoArgument = [NO_ARGUMENT = :NONE, nil].freeze
