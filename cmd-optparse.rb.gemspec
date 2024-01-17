@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 require "./lib/cmd-optparse"
-
 Gem::Specification.new do |spec|
   spec.name          =  File.basename(__FILE__, ".gemspec")
   spec.version       = Cmd::OptionParser::VERSION

@@ -2332,9 +2332,9 @@ XXX
   # and DecimalNumeric. See Acceptable argument classes (in source code).
   #
   module Acceptables
-    const_set(:DecimalInteger, OptionParser::DecimalInteger)
-    const_set(:OctalInteger, OptionParser::OctalInteger)
-    const_set(:DecimalNumeric, OptionParser::DecimalNumeric)
+    const_set(:DecimalInteger, DecimalInteger)
+    const_set(:OctalInteger, OctalInteger)
+    const_set(:DecimalNumeric, DecimalNumeric)
   end
 
   require_relative "option_parser/ac"
@@ -2348,4 +2348,3 @@ XXX
   # ARGV is arguable by OptionParser
   ARGV.extend(Arguable)
 end
-
