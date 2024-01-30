@@ -427,7 +427,7 @@ module CLI
 end unless defined?(CLI)
 
 class CLI::OptionParser
-  VERSION = "0.5.2"
+  VERSION = "0.5.3"
 
   # :stopdoc:
   NoArgument = [NO_ARGUMENT = :NONE, nil].freeze
