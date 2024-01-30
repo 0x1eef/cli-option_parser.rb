@@ -19,7 +19,7 @@ class ::OptionParserLoad < Test::Unit::TestCase
 
   def new_parser
     @result = nil
-    Cmd::OptionParser.new do |opt|
+    CLI::OptionParser.new do |opt|
       opt.on("--test=arg") {|v| @result = v}
     end
   end

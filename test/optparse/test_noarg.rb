@@ -25,7 +25,7 @@ module ::OptionParserNoArg
   end
 
   def test_short
-    assert_raise(Cmd::OptionParser::InvalidOption) {@opt.parse!(%w"-xq")}
+    assert_raise(CLI::OptionParser::InvalidOption) {@opt.parse!(%w"-xq")}
     assert_equal(%w"", no_error {@opt.parse!(%w"-x")})
     assert_equal(true, @flag)
     @flag = nil
@@ -34,11 +34,11 @@ module ::OptionParserNoArg
   end
 
   def test_abbrev
-    assert_raise(Cmd::OptionParser::InvalidOption) {@opt.parse!(%w"-oq")}
+    assert_raise(CLI::OptionParser::InvalidOption) {@opt.parse!(%w"-oq")}
     assert_equal(%w"", no_error {@opt.parse!(%w"-o")})
     assert_equal(true, @flag)
     @flag = nil
-    assert_raise(Cmd::OptionParser::InvalidOption) {@opt.parse!(%w"-O")}
+    assert_raise(CLI::OptionParser::InvalidOption) {@opt.parse!(%w"-O")}
     assert_nil(@flag)
     @flag = nil
     assert_equal(%w"foo", no_error {@opt.parse!(%w"-o foo")})
@@ -46,7 +46,7 @@ module ::OptionParserNoArg
   end
 
   def test_long
-    assert_raise(Cmd::OptionParser::NeedlessArgument) {@opt.parse!(%w"--option=x")}
+    assert_raise(CLI::OptionParser::NeedlessArgument) {@opt.parse!(%w"--option=x")}
     assert_equal(%w"", no_error {@opt.parse!(%w"--opt")})
     assert_equal(true, @flag)
     @flag = nil
@@ -56,8 +56,8 @@ module ::OptionParserNoArg
 
   def test_ambiguous
     @opt.def_option("--open") {|x|}
-    assert_raise(Cmd::OptionParser::AmbiguousOption) {@opt.parse!(%w"--op")}
-    assert_raise(Cmd::OptionParser::AmbiguousOption) {@opt.parse!(%w"-o")}
+    assert_raise(CLI::OptionParser::AmbiguousOption) {@opt.parse!(%w"--op")}
+    assert_raise(CLI::OptionParser::AmbiguousOption) {@opt.parse!(%w"-o")}
     assert_equal(%w"", no_error {@opt.parse!(%w"--opt")})
     assert_equal(true, @flag)
   end

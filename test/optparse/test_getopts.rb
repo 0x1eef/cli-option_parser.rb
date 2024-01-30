@@ -4,7 +4,7 @@ require 'optparse'
 
 class ::OptionParserGetopts < Test::Unit::TestCase
   def setup
-    @opt = Cmd::OptionParser.new
+    @opt = CLI::OptionParser.new
   end
 
   def test_short_noarg

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
-require "./lib/cmd-optparse"
+require "./lib/cli/option_parser"
 Gem::Specification.new do |spec|
   spec.name          =  File.basename(__FILE__, ".gemspec")
-  spec.version       = Cmd::OptionParser::VERSION
+  spec.version       = CLI::OptionParser::VERSION
   spec.authors       = ["0x1eef", "Nobu Nakada"]
   spec.email         = ["0x1eef@protonmail.com"]
 

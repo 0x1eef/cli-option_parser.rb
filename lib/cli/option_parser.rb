@@ -423,7 +423,10 @@
 # should be enough to learn how to use this class.
 # If you have any questions, file a ticket at http://bugs.ruby-lang.org.
 #
-class Cmd::OptionParser
+module CLI
+end unless defined?(CLI)
+
+class CLI::OptionParser
   VERSION = "0.5.2"
 
   # :stopdoc:

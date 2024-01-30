@@ -29,19 +29,19 @@ class ::OptionParserDidYouMean < ::OptionParser
   end
 
   def test_no_suggestion
-    assert_raise_with_message(Cmd::OptionParser::InvalidOption, "invalid option: --cuz") do
+    assert_raise_with_message(CLI::OptionParser::InvalidOption, "invalid option: --cuz") do
       @opt.permute!(%w"--cuz")
     end
   end
 
   def test_plain
-    assert_raise_with_message(Cmd::OptionParser::InvalidOption, /invalid option: --baa\nDid you mean\?\s+bar\s+baz\Z/) do
+    assert_raise_with_message(CLI::OptionParser::InvalidOption, /invalid option: --baa\nDid you mean\?\s+bar\s+baz\Z/) do
       @opt.permute!(%w"--baa")
     end
   end
 
   def test_ambiguous
-    assert_raise_with_message(Cmd::OptionParser::AmbiguousOption, /ambiguous option: --ba\nDid you mean\?\s+bar\s+baz\Z/) do
+    assert_raise_with_message(CLI::OptionParser::AmbiguousOption, /ambiguous option: --ba\nDid you mean\?\s+bar\s+baz\Z/) do
       @opt.permute!(%w"--ba")
     end
   end

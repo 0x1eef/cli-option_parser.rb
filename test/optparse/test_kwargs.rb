@@ -25,10 +25,10 @@ class ::OptionParserKwArg < Test::Unit::TestCase
   alias no_error assert_no_error
 
   def test_kwarg
-    opt = Cmd::OptionParser.new
+    opt = CLI::OptionParser.new
     options = opt.define_by_keywords({}, K.instance_method(:initialize),
                                      port: [Integer])
-    assert_raise(Cmd::OptionParser::MissingArgument) {opt.parse!(%w"--host")}
+    assert_raise(CLI::OptionParser::MissingArgument) {opt.parse!(%w"--host")}
     assert_nothing_raised {opt.parse!(%w"--host=localhost")}
     assert_equal("localhost", options[:host])
     assert_nothing_raised {opt.parse!(%w"--port")}

@@ -4,7 +4,7 @@ require 'optparse'
 
 class ::OptionParserZshCompletion < Test::Unit::TestCase
   def setup
-    @opt = Cmd::OptionParser.new
+    @opt = CLI::OptionParser.new
     @opt.define("-z", "zzz") {}
     @opt.define("--foo") {}
     @opt.define("--bar=BAR") {}

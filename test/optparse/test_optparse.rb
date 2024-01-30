@@ -1,10 +1,10 @@
 # frozen_string_literal: false
 require 'test/unit'
-require 'cmd-optparse'
+require 'cli-option_parser'
 
 class ::OptionParserTest < Test::Unit::TestCase
   def setup
-    @opt = Cmd::OptionParser.new
+    @opt = CLI::OptionParser.new
     @flag = self.class		# cannot set by option
   end
 
@@ -98,11 +98,11 @@ class ::OptionParserTest < Test::Unit::TestCase
       assert_equal({F: 'foo', zrs: 'foo'}, result)
     end
 
-    assert_raise(Cmd::OptionParser::InvalidOption) {@opt.parse(%w(--zr foo))}
-    assert_raise(Cmd::OptionParser::InvalidOption) {@opt.parse(%w(--z foo))}
-    assert_raise(Cmd::OptionParser::InvalidOption) {@opt.parse(%w(-zrs foo))}
-    assert_raise(Cmd::OptionParser::InvalidOption) {@opt.parse(%w(-zr foo))}
-    assert_raise(Cmd::OptionParser::InvalidOption) {@opt.parse(%w(-z foo))}
+    assert_raise(CLI::OptionParser::InvalidOption) {@opt.parse(%w(--zr foo))}
+    assert_raise(CLI::OptionParser::InvalidOption) {@opt.parse(%w(--z foo))}
+    assert_raise(CLI::OptionParser::InvalidOption) {@opt.parse(%w(-zrs foo))}
+    assert_raise(CLI::OptionParser::InvalidOption) {@opt.parse(%w(-zr foo))}
+    assert_raise(CLI::OptionParser::InvalidOption) {@opt.parse(%w(-z foo))}
   end
 
   def test_raise_unknown
@@ -121,7 +121,7 @@ class ::OptionParserTest < Test::Unit::TestCase
     @opt.def_option(/^[^-]/) do |arg|
       assert(false, "Never gets called")
     end
-    e = assert_raise(Cmd::OptionParser::InvalidOption) {@opt.parse(%w(-t))}
+    e = assert_raise(CLI::OptionParser::InvalidOption) {@opt.parse(%w(-t))}
     assert_equal(["-t"], e.args)
   end
 end
